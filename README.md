@@ -126,6 +126,13 @@ src/
 
 ---
 
-## 📮 Contact
+## 🛸 Contact
 
-Developed by [@jabbar-app](https://github.com/jabbar-app) for Zypsy coding test.
+Feel free to reach out if you have any questions or need assistance.
+
+- **Email:** box@jabbar.id
+- **LinkedIn:** [Jabbar Ali Panggabean](https://linkedin.com/in/jabbarpanggabean)
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
