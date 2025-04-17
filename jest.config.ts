@@ -1,4 +1,4 @@
-import type { Config } from 'jest'
+import type { Config } from 'jest';
 
 const config: Config = {
   preset: 'ts-jest',
@@ -8,9 +8,16 @@ const config: Config = {
     '\\.(css|png|jpg|svg)$': '<rootDir>/__mocks__/fileMock.js',
   },
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
-  testMatch: ['<rootDir>/src/**/*.(spec|test).{ts,tsx}'],
+  testMatch: [
+    '**/__tests__/**/*.[jt]s?(x)',
+    '**/?(*.)+(spec|test).[jt]s?(x)', // ← revisi agar lebih luas & standard
+  ],
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.d.ts', '!src/**/index.tsx'],
-}
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/index.tsx',
+  ],
+};
 
-export default config
+export default config;

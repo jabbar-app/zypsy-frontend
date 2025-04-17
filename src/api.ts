@@ -5,14 +5,20 @@ export const api = axios.create({
   baseURL: 'http://localhost:9000',
 });
 
-// categories
-export const getCategories = () =>
-  api.get<Category[]>('/categories').then((res) => res.data);
-export const updateCategory = (c: Category) =>
-  api.put<Category>(`/categories/${c.id}`, c).then((res) => res.data);
+// Categories
+export const getCategories = (): Promise<Category[]> =>
+  api.get('/categories').then((res) => res.data);
 
-// posts
-export const getPostsByCategory = (categoryId: string) =>
-  api
-    .get<Post[]>(`/categories/${categoryId}/posts`)
-    .then((res) => res.data);
+export const updateCategory = async (category: Category): Promise<Category> => {
+  try {
+    const res = await api.put(`/categories/${category.id}`, category);
+    return res.data;
+  } catch (error: any) {
+    console.error('Failed to update category:', error);
+    throw new Error('Failed to update category');
+  }
+};
+
+// Posts
+export const getPostsByCategory = (categoryId: string): Promise<Post[]> =>
+  api.get(`/categories/${categoryId}/posts`).then((res) => res.data);

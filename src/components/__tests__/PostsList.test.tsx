@@ -50,6 +50,13 @@ describe('PostsList', () => {
     expect(screen.getByText(/please pick at least one category/i)).toBeInTheDocument();
   });
 
+  it('does not call API when no selected categories', () => {
+    render(<PostsList selectedCategories={[]} onSelectCategory={jest.fn()} />, {
+      wrapper: createWrapper(),
+    });
+    expect(api.getPostsByCategory).not.toHaveBeenCalled();
+  });
+
   it('renders posts for selected category', async () => {
     render(<PostsList selectedCategories={['1']} onSelectCategory={jest.fn()} />, {
       wrapper: createWrapper(),
@@ -81,11 +88,11 @@ describe('PostsList', () => {
       wrapper: createWrapper(),
     });
 
-    const star = await screen.findAllByRole('button', {
+    const starButtons = await screen.findAllByRole('button', {
       name: /mark as favorite|unmark as favorite/i,
     });
 
-    fireEvent.click(star[0]);
+    fireEvent.click(starButtons[0]);
 
     await waitFor(() => {
       expect(api.updateCategory).toHaveBeenCalledWith({
@@ -93,6 +100,22 @@ describe('PostsList', () => {
         name: 'Tech',
         favorite: true,
       });
+    });
+  });
+
+  it('toggles favorite class correctly when clicked', async () => {
+    render(<PostsList selectedCategories={['1']} onSelectCategory={jest.fn()} />, {
+      wrapper: createWrapper(),
+    });
+
+    const buttons = await screen.findAllByRole('button', { name: /Tech/i });
+    const starButton = buttons[0].querySelector('[aria-label*="favorite"]');
+
+    fireEvent.click(starButton!);
+
+    await waitFor(() => {
+      expect(api.updateCategory).toHaveBeenCalled();
+      expect(toast.success).toHaveBeenCalledWith(expect.stringMatching(/added|removed/));
     });
   });
 });

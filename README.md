@@ -39,8 +39,7 @@ This app demonstrates attention to detail in UX, maintainable architecture, and 
 - **Node.js:** `v20.18.3`
 - **Package manager:** `npm` or `pnpm` recommended
 
-> 🔍 React version used: **18.x**  
-> React version is **not the same** as Node.js version. You can check it in `package.json`.
+> 🔍 React version used: **18+**  
 
 ---
 
@@ -49,8 +48,8 @@ This app demonstrates attention to detail in UX, maintainable architecture, and 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/jabbar-app/zypsy-post-explorer.git
-cd zypsy-post-explorer
+git clone https://github.com/jabbar-app/zypsy-frontend.git
+cd zypsy-frontend
 ```
 
 ### 2. Install dependencies
@@ -83,9 +82,11 @@ npm run test:coverage
 ```
 
 Includes unit tests for components like:
-- `CategoryPill`
+- `CategoryFilter`
+- `CategoryList`
+- `PostsList`
+- `Skeleton`
 - `StarToggle`
-- `PostsList` (partial coverage)
 
 ---
 
@@ -121,14 +122,10 @@ src/
 ## ♿ Accessibility
 
 ✅ Keyboard navigation supported  
-✅ Accessible `role=button`, `aria-label` for interactive elements  
-⚠️ Full WCAG audit **not yet performed**  
-➡️ You can extend with `@axe-core/react` or `eslint-plugin-jsx-a11y`
+✅ Accessible `role=button`, `aria-label` for interactive elements
 
 ---
 
 ## 📮 Contact
 
-Made with 💚 by [@jabbar-app](https://github.com/jabbar-app)
-
-Feel free to fork, contribute, or give feedback!
+Developed by [@jabbar-app](https://github.com/jabbar-app) for Zypsy coding test.
